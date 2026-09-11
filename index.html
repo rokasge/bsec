@@ -4,155 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>baltsec.com</title>
-<meta name="description" content="baltsec — security research. Baltic region.">
+<meta name="description" content="baltsec — independent security research. Penetration testing, vulnerability research, responsible disclosure.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='72' x='50' font-size='60' text-anchor='middle' font-family='monospace' fill='%23d0d0d0'>&gt;</text></svg>">
-<style>
-  :root{
-    --bg:#0a0a0a;
-    --fg:#d4d4d4;
-    --dim:#6a6a6a;
-    --faint:#2a2a2a;
-    --hi:#f5f5f5;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    background:var(--bg);
-    color:var(--fg);
-    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,"DejaVu Sans Mono",monospace;
-    font-size:15px;
-    line-height:1.6;
-    padding:5vh 24px 8vh;
-    max-width:860px;
-    margin:0 auto;
-    position:relative;
-    min-height:100vh;
-  }
-  /* subtle CRT grid */
-  body::before{
-    content:"";
-    position:fixed;inset:0;
-    background-image:
-      repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px);
-    pointer-events:none;
-    z-index:1;
-  }
-  .wrap{position:relative;z-index:2}
-
-  /* ── ASCII logo ── */
-  pre.logo{
-    font-size:clamp(3.6px,1.32vw,11.5px);
-    line-height:1.02;
-    letter-spacing:.06em;
-    color:var(--hi);
-    white-space:pre;
-    overflow:hidden;
-    margin-bottom:6px;
-    text-shadow:0 0 14px rgba(255,255,255,.10);
-    user-select:none;
-  }
-
-  .tagline{
-    color:var(--dim);
-    font-size:13px;
-    letter-spacing:.02em;
-    margin-bottom:4px;
-  }
-  .tagline .cursor{
-    display:inline-block;
-    width:8px;height:14px;
-    background:var(--fg);
-    vertical-align:-2px;
-    margin-left:2px;
-    animation:blink 1.05s step-end infinite;
-  }
-  @keyframes blink{50%{opacity:0}}
-  @media (prefers-reduced-motion:reduce){.cursor{animation:none}}
-
-  hr{
-    border:0;
-    border-top:1px solid var(--faint);
-    margin:26px 0;
-  }
-
-  section{margin-bottom:30px}
-
-  h2{
-    font-size:13px;
-    font-weight:600;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--dim);
-    margin-bottom:12px;
-  }
-  h2::before{content:"\2588\0020";color:var(--faint)}
-
-  p{margin-bottom:10px}
-  p.dim{color:var(--dim)}
-
-  ul{list-style:none}
-  li{
-    padding:3px 0 3px 22px;
-    position:relative;
-    color:var(--fg);
-  }
-  li::before{
-    content:"\2500\2500";
-    position:absolute;left:0;
-    color:var(--faint);
-  }
-
-  a{
-    color:var(--fg);
-    text-decoration:none;
-    border-bottom:1px solid var(--faint);
-    transition:border-color .12s,color .12s;
-  }
-  a:hover{color:#fff;border-bottom-color:var(--fg)}
-  a[data-ext]::after{content:" \2197";color:var(--dim);font-size:11px}
-
-  /* ── terminal block ── */
-  .term{
-    border:1px solid var(--faint);
-    background:#080808;
-    padding:14px 16px;
-    font-size:13.5px;
-    overflow-x:auto;
-  }
-  .term .ln{white-space:pre;display:block}
-  .term .prompt{color:var(--dim)}
-  .term .cmd{color:var(--hi)}
-  .term .out{color:var(--dim)}
-  .term .warn{color:#e0a030}
-  .term .ok{color:#8fc98f}
-
-  /* ── contact rows ── */
-  .kv{display:grid;grid-template-columns:120px 1fr;gap:4px 16px;font-size:14px}
-  .kv dt{color:var(--dim)}
-  .kv dd{color:var(--fg);overflow-wrap:anywhere}
-
-  footer{
-    margin-top:52px;
-    padding-top:16px;
-    border-top:1px solid var(--faint);
-    color:var(--dim);
-    font-size:12px;
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:8px;
-  }
-
-  ::selection{background:#333;color:#fff}
-
-  @media (max-width:640px){
-    body{padding:3vh 16px 6vh;font-size:14.5px}
-    pre.logo{font-size:5.4px}
-    .kv{grid-template-columns:1fr;gap:0}
-    .kv dt{margin-top:8px}
-    .kv dd{margin-bottom:4px}
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="wrap">
@@ -164,7 +18,7 @@
 | |_) | (_| | | |_\__ \  __/ (__ 
 |____/ \__,_|_|\__|___/\___|\___|
 </pre>
-<div class="tagline">&gt; security research &middot; baltic region<span class="cursor"></span></div>
+<div class="tagline">&gt; security research<span class="cursor"></span></div>
 
 <hr>
 
@@ -173,24 +27,26 @@
   <div class="term">
     <span class="ln"><span class="prompt">$&nbsp;</span><span class="cmd">cat about.txt</span></span>
     <span class="ln out">&nbsp;</span>
-    <span class="ln out">Independent security research out of the Baltics.</span>
-    <span class="ln out">Offensive testing, vulnerability discovery, and responsible disclosure.</span>
-    <span class="ln out">Web applications, APIs, mobile, and enterprise infrastructure.</span>
+    <span class="ln out">Independent security research based in the Baltics.</span>
+    <span class="ln out">Specializing in offensive testing, vulnerability discovery, and responsible disclosure</span>
+    <span class="ln out">across web applications, APIs, mobile, and enterprise infrastructure.</span>
     <span class="ln out">&nbsp;</span>
-    <span class="ln out">Findings go to vendors first. Detail goes public only after a fix</span>
-    <span class="ln out">ships or a reasonable disclosure window closes.</span>
+    <span class="ln out">Vendors get the first look. Technical details go public only after</span>
+    <span class="ln out">a patch is shipped or the standard disclosure window expires.</span>
   </div>
 </section>
 
 <section>
   <h2>focus</h2>
-  <ul>
-    <li>Web application &amp; API penetration testing</li>
-    <li>Vulnerability research &mdash; auth bypass, injection, deserialization</li>
-    <li>Enterprise software &amp; CMS security review</li>
-    <li>Android application assessment</li>
-    <li>Responsible disclosure &amp; CVE coordination</li>
-  </ul>
+  <div class="term">
+    <span class="ln"><span class="prompt">$&nbsp;</span><span class="cmd">cat areas_of_expertise.conf</span></span>
+    <span class="ln out">&nbsp;</span>
+    <span class="ln out">&bull; Web Application &amp; API Penetration Testing</span>
+    <span class="ln out">&bull; Vulnerability Research (Auth Bypass, Injection, Deserialization)</span>
+    <span class="ln out">&bull; Enterprise Software &amp; CMS Security Reviews</span>
+    <span class="ln out">&bull; Android Application Assessments</span>
+    <span class="ln out">&bull; CVE Coordination &amp; Advisory</span>
+  </div>
 </section>
 
 <section>
@@ -198,11 +54,23 @@
   <div class="term">
     <span class="ln"><span class="prompt">$&nbsp;</span><span class="cmd">./report --policy</span></span>
     <span class="ln out">&nbsp;</span>
-    <span class="ln ok">[ok]&nbsp;&nbsp;&nbsp;encrypted reports accepted (PGP on request)</span>
-    <span class="ln ok">[ok]&nbsp;&nbsp;&nbsp;no exploit code published before a fix</span>
-    <span class="ln warn">[note]&nbsp;medium-risk issues: courtesy credit only</span>
-    <span class="ln warn">[note]&nbsp;critical findings: full write-up + CVE coordination</span>
+    <span class="ln ok">[ ok ]&nbsp;encrypted communications accepted (PGP on request)</span>
+    <span class="ln ok">[ ok ]&nbsp;zero exploit code published prior to a fix</span>
+    <span class="ln info">[info]&nbsp;medium-severity issues : courtesy credit / hall of fame</span>
+    <span class="ln info">[info]&nbsp;critical-severity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: full write-up + CVE coordination</span>
   </div>
+</section>
+
+<section>
+  <h2>writing</h2>
+  <ul class="postlist">
+    <li>
+      <span class="date">2026-09-11</span>
+      <span class="ptitle"><a href="posts/welcome.html">Opening the log</a></span>
+      <span class="tag">meta</span>
+    </li>
+  </ul>
+  <p class="dim" style="margin-top:12px;font-size:13px"><a href="posts/">all posts &rarr;</a></p>
 </section>
 
 <section>
@@ -210,19 +78,14 @@
   <dl class="kv">
     <dt>email</dt>
     <dd><a href="mailto:contact@baltsec.com">contact@baltsec.com</a></dd>
-    <dt>abuse</dt>
-    <dd><a href="mailto:abuse@baltsec.com">abuse@baltsec.com</a></dd>
-    <dt>github</dt>
-    <dd><a href="https://github.com/rokasge" data-ext rel="noopener">github.com/rokasge</a></dd>
   </dl>
 </section>
 
 <footer>
   <span>baltsec.com &middot; no trackers, no cookies, no javascript</span>
-  <span id="yr">&copy;</span>
+  <span>2026</span>
 </footer>
 
 </div>
-<script>document.getElementById('yr').textContent='\u00a9 '+new Date().getFullYear();</script>
 </body>
 </html>
