@@ -1,0 +1,373 @@
+/* baltsec — variant 01-terminal ─────────────────────────────────────────────
+   Terminal heritage, retargeted at buyers of audit services.
+   Static HTML + CSS only. No javascript. No external requests. */
+
+:root{
+  --bg:#0a0a0a;
+  --panel:#080808;
+  --fg:#d4d4d4;          /* 11.6:1 on --bg */
+  --dim:#8f8f8f;         /* 5.8:1 on --bg  — accessible secondary */
+  --faint:#2a2a2a;
+  --hi:#f5f5f5;
+  --accent:#6cc98a;      /* single accent: terminal "ok" green, 10.4:1 on --bg */
+  --accent-dim:#4e8f65;  /* decorative rules only */
+  --info:#8fb8dd;        /* typed output — 9.2:1 on --bg */
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,"DejaVu Sans Mono",monospace;
+  font-size:15px;
+  line-height:1.62;
+  padding:5vh 24px 8vh;
+  max-width:860px;
+  margin:0 auto;
+  position:relative;
+  min-height:100vh;
+  overflow-wrap:break-word;
+}
+
+/* subtle CRT scanline grid */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px);
+  pointer-events:none;
+  z-index:1;
+}
+.wrap{position:relative;z-index:2}
+
+/* skip link ---------------------------------------------------------------- */
+.skip{
+  position:absolute;left:-9999px;top:0;
+  background:var(--bg);color:var(--hi);
+  border:1px solid var(--fg);
+  padding:8px 14px;font-size:13px;z-index:10;
+}
+.skip:focus{left:8px;top:8px}
+
+/* ── masthead ──────────────────────────────────────────────────────────── */
+.masthead{margin-bottom:26px}
+
+pre.logo{
+  /* 33 glyphs wide. Rendered width ≈ 33 * fs * 0.605 (mono advance + tracking).
+     clamp() grows the art with the viewport but is capped so it always fits the
+     padded container: at 360px it resolves to ~11.5px (231px of 332px available),
+     and it never exceeds ~19px at the 812px content cap. White-space:pre plus
+     overflow:hidden guarantees no wrap and no page overflow as a final backstop. */
+  font-size:clamp(9px,2.34vw,19px);
+  line-height:1.05;
+  letter-spacing:.06em;
+  color:var(--hi);
+  white-space:pre;
+  overflow:hidden;
+  margin-bottom:10px;
+  text-shadow:0 0 14px rgba(255,255,255,.10);
+  user-select:none;
+  display:block;
+  max-width:100%;
+}
+
+.tagline{
+  color:var(--dim);
+  font-size:13px;
+  letter-spacing:.02em;
+  margin-bottom:2px;
+}
+.tagline .cursor{
+  display:inline-block;
+  width:8px;height:14px;
+  background:var(--fg);
+  vertical-align:-2px;
+  margin-left:3px;
+  animation:blink 1.05s step-end infinite;
+}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .cursor{animation:none}
+  *{transition:none!important}
+}
+
+hr{
+  border:0;
+  border-top:1px solid var(--faint);
+  margin:26px 0;
+}
+
+/* ── headings ──────────────────────────────────────────────────────────── */
+h1{
+  font-size:17px;
+  font-weight:600;
+  color:var(--hi);
+  letter-spacing:.01em;
+  line-height:1.45;
+  margin-bottom:8px;
+}
+h1::before{content:"$ ";color:var(--accent-dim);font-weight:400}
+
+h2{
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--dim);
+  margin-bottom:14px;
+}
+h2::before{content:"\2588\0020";color:var(--faint)}
+
+h3{
+  font-size:14.5px;
+  font-weight:600;
+  color:var(--hi);
+  line-height:1.4;
+  margin-bottom:6px;
+}
+
+p{margin-bottom:10px}
+.dim{color:var(--dim)}
+.lead{
+  color:var(--dim);
+  font-size:14.5px;
+  margin-bottom:22px;
+  max-width:66ch;
+}
+strong{color:var(--hi);font-weight:600}
+em{font-style:italic;color:var(--fg)}
+code{
+  background:#151515;
+  border:1px solid var(--faint);
+  padding:1px 5px;
+  font-size:13px;
+  color:var(--hi);
+}
+
+a{
+  color:var(--fg);
+  text-decoration:none;
+  border-bottom:1px solid var(--faint);
+  transition:border-color .12s,color .12s;
+}
+a:hover{color:#fff;border-bottom-color:var(--fg)}
+a:focus-visible{
+  outline:1px solid var(--accent);
+  outline-offset:2px;
+  border-bottom-color:transparent;
+}
+
+/* ── terminal transcript (primary storytelling device) ─────────────────── */
+.term{
+  border:1px solid var(--faint);
+  background:var(--panel);
+  padding:14px 16px;
+  font-size:13.5px;
+  overflow-x:auto;
+  margin-bottom:12px;
+}
+.term .ln{white-space:pre;display:block;color:var(--fg)}
+.term .prompt{color:var(--dim)}
+.term .cmd{color:var(--hi)}
+.term .out{color:var(--info)}
+.term .note{color:var(--dim)}
+.term .ok{color:var(--accent)}
+.term .ok::before{content:"[ ok ] "}
+.term .num{
+  color:var(--dim);
+  display:inline-block;
+  min-width:2.6em;
+}
+
+/* ── sections ──────────────────────────────────────────────────────────── */
+section{margin-bottom:34px}
+section > .sect-note{color:var(--dim);font-size:13.5px;margin:-6px 0 14px}
+
+/* ── service list ──────────────────────────────────────────────────────── */
+.svc{
+  list-style:none;
+  border-top:1px solid var(--faint);
+}
+.svc li{
+  border-bottom:1px solid var(--faint);
+  padding:16px 0 16px 0;
+  display:grid;
+  grid-template-columns:2.6em 1fr;
+  gap:0 14px;
+  align-items:start;
+}
+.svc .idx{
+  color:var(--accent-dim);
+  font-size:13px;
+  padding-top:3px;
+  letter-spacing:.04em;
+}
+.svc h3{margin-bottom:4px}
+.svc p{
+  color:var(--dim);
+  font-size:13.5px;
+  margin:0;
+  max-width:62ch;
+}
+
+/* ── engagement process ────────────────────────────────────────────────── */
+.steps{
+  list-style:none;
+  counter-reset:step;
+  border-top:1px solid var(--faint);
+}
+.steps li{
+  counter-increment:step;
+  position:relative;
+  border-bottom:1px solid var(--faint);
+  padding:15px 0 15px 42px;
+}
+.steps li::before{
+  content:"0" counter(step);
+  position:absolute;
+  left:0;top:15px;
+  color:var(--dim);
+  font-size:13px;
+  letter-spacing:.05em;
+}
+.steps li::after{
+  content:"\2514";
+  position:absolute;
+  left:22px;top:15px;
+  color:var(--faint);
+}
+.steps h3{margin-bottom:3px}
+.steps p{color:var(--dim);font-size:13.5px;margin:0;max-width:62ch}
+
+.callout{
+  margin-top:16px;
+  border:1px solid var(--faint);
+  border-left:2px solid var(--accent-dim);
+  background:var(--panel);
+  padding:12px 16px;
+  font-size:13.5px;
+  color:var(--fg);
+}
+.callout .k{color:var(--accent);font-weight:600}
+.callout p:last-child{margin-bottom:0}
+
+/* ── disclosure: aligned key/value ledger ──────────────────────────────── */
+.ledger{
+  border:1px solid var(--faint);
+  background:var(--panel);
+  padding:14px 16px;
+  font-size:13.5px;
+}
+.ledger .row{
+  display:grid;
+  grid-template-columns:4.4em 1fr;
+  gap:0 12px;
+  padding:5px 0;
+  align-items:baseline;
+}
+.ledger .tag{
+  white-space:nowrap;
+  color:var(--dim);
+}
+.ledger .tag.ok{color:var(--accent)}
+.ledger .tag.info{color:var(--info)}
+.ledger .txt{color:var(--fg);min-width:0}
+
+/* ── contact / CTA ─────────────────────────────────────────────────────── */
+.cta{
+  border:1px solid var(--faint);
+  background:var(--panel);
+  padding:20px 18px;
+}
+.cta .cmd{
+  display:block;
+  font-size:13px;
+  color:var(--dim);
+  margin-bottom:12px;
+}
+.cta .label{
+  display:block;
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--dim);
+  margin-bottom:8px;
+}
+a.button{
+  display:inline-block;
+  border:1px solid var(--fg);
+  background:transparent;
+  color:var(--hi);
+  padding:11px 20px;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.02em;
+  transition:background .14s,color .14s,border-color .14s;
+  border-bottom-width:1px;
+}
+a.button:hover,
+a.button:focus-visible{
+  background:var(--hi);
+  color:var(--bg);
+  border-color:var(--hi);
+}
+a.button:focus-visible{outline:1px solid var(--accent);outline-offset:3px}
+.cta .addr{
+  display:block;
+  margin-top:14px;
+  font-size:13.5px;
+  color:var(--dim);
+}
+.cta .addr a{color:var(--fg)}
+.cta .meta{
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid var(--faint);
+  font-size:12.5px;
+  color:var(--dim);
+  margin-bottom:0;
+}
+
+/* ── footer ────────────────────────────────────────────────────────────── */
+footer{
+  margin-top:52px;
+  padding-top:16px;
+  border-top:1px solid var(--faint);
+  color:var(--dim);
+  font-size:12px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px;
+}
+footer .linkline{
+  flex:1 1 100%;
+  order:-1;
+  color:var(--fg);
+}
+
+::selection{background:#333;color:#fff}
+
+/* ── responsive ────────────────────────────────────────────────────────── */
+@media (max-width:640px){
+  body{padding:3.5vh 16px 6vh;font-size:14.5px}
+  h1{font-size:16px}
+  .lead{font-size:14px}
+  .term,.ledger{font-size:13px;padding:12px 13px}
+  .svc li{grid-template-columns:2.2em 1fr;gap:0 10px;padding:14px 0}
+  .steps li{padding-left:38px}
+  .steps li::after{left:20px}
+  .cta{padding:16px 14px}
+  a.button{display:block;text-align:center;padding:12px 18px}
+}
+
+@media (max-width:420px){
+  body{padding:3vh 14px 6vh}
+  .term,.ledger{font-size:12.5px;padding:11px 11px}
+  .svc li{grid-template-columns:1em 1fr;gap:0 8px}
+  .svc .idx{font-size:12px}
+  .ledger .row{grid-template-columns:4.4em 1fr;gap:0 10px}
+  footer{font-size:11.5px}
+}

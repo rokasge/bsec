@@ -1,91 +1,424 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>baltsec.com</title>
-<meta name="description" content="baltsec — independent security research. Penetration testing, vulnerability research, responsible disclosure.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text y='72' x='50' font-size='60' text-anchor='middle' font-family='monospace' fill='%23d0d0d0'>&gt;</text></svg>">
+<title>Kibernetinio saugumo auditas ir įsilaužimų testavimas | baltsec</title>
+<meta name="description" content="Kibernetinio saugumo auditas, įsilaužimų testavimas ir pažeidžiamumų vertinimas verslui. NIS2 atitikties vertinimas. Konsultacija: contact@baltsec.com">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23ffffff'/><rect x='18' y='18' width='64' height='64' fill='none' stroke='%231a5fd0' stroke-width='9'/></svg>">
+<link rel="canonical" href="https://baltsec.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="baltsec">
+<meta property="og:locale" content="lt_LT">
+<meta property="og:title" content="Kibernetinio saugumo auditas ir įsilaužimų testavimas | baltsec">
+<meta property="og:description" content="Kibernetinio saugumo auditas, įsilaužimų testavimas ir NIS2 atitikties vertinimas verslui. Rankinis testavimas, rašytinė įsilaužimų ataskaita.">
+<meta property="og:url" content="https://baltsec.com/">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="style.css">
+<meta name="theme-colour" content="#ffffff">
 </head>
 <body>
-<div class="wrap">
 
-<pre class="logo">
- ____        _ _                 
-| __ )  __ _| | |_ ___  ___  ___ 
-|  _ \ / _` | | __/ __|/ _ \/ __|
-| |_) | (_| | | |_\__ \  __/ (__ 
-|____/ \__,_|_|\__|___/\___|\___|
-</pre>
-<div class="tagline">&gt; security research<span class="cursor"></span></div>
+<a class="skip" href="#main">Eiti prie turinio</a>
 
-<hr>
-
-<section>
-  <h2>whoami</h2>
-  <div class="term">
-    <span class="ln"><span class="prompt">$&nbsp;</span><span class="cmd">cat about.txt</span></span>
-    <span class="ln out">&nbsp;</span>
-    <span class="ln out">Independent security research based in Lithuania.</span>
-    <span class="ln out">Specializing in offensive testing, vulnerability discovery, and responsible disclosure</span>
-    <span class="ln out">across web applications, APIs, mobile, and enterprise infrastructure.</span>
-    <span class="ln out">&nbsp;</span>
-    <span class="ln out">Vendors get the first look. Technical details go public only after</span>
-    <span class="ln out">a patch is shipped or the standard disclosure window expires.</span>
+<header class="masthead" id="top">
+  <div class="shell masthead__inner">
+    <a class="brand" href="#top">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">baltsec</span>
+    </a>
+    <nav class="masthead__nav" aria-label="Sekcijų navigacija">
+      <ul>
+        <li><a href="#paslaugos">Paslaugos</a></li>
+        <li><a href="#procesas">Procesas</a></li>
+        <li><a href="#nis2">NIS2 auditas</a></li>
+        <li><a href="#salygos">Sąlygos</a></li>
+        <li><a href="rasome/">Įžvalgos</a></li>
+        <li><a href="#kontaktai">Kontaktai</a></li>
+      </ul>
+    </nav>
   </div>
-</section>
+</header>
 
-<section>
-  <h2>focus</h2>
-  <div class="term">
-    <span class="ln"><span class="prompt">$&nbsp;</span><span class="cmd">cat areas_of_expertise.conf</span></span>
-    <span class="ln out">&nbsp;</span>
-    <span class="ln out">&bull; Web Application &amp; API Penetration Testing</span>
-    <span class="ln out">&bull; Vulnerability Research (Auth Bypass, Injection, Deserialization)</span>
-    <span class="ln out">&bull; Enterprise Software &amp; CMS Security Reviews</span>
-    <span class="ln out">&bull; Android Application Assessments</span>
-    <span class="ln out">&bull; CVE Coordination &amp; Advisory</span>
+<main id="main">
+
+  <!-- ── Virš sulenkimo: kas, ką siūlo, kaip užsisakyti ────────────── -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="shell hero__inner">
+
+      <div class="hero__lede">
+        <p class="eyebrow">Kibernetinio saugumo paslaugos verslui &middot; Lietuva</p>
+        <h1 id="hero-title">Kibernetinio saugumo auditas ir įsilaužimų testavimas verslui.</h1>
+        <p class="hero__stand">
+          baltsec atlieka IT saugumo auditus, įsilaužimų testavimą ir pažeidžiamumų
+          vertinimą. Testuojame interneto aplikacijas, API, įmonės programinę įrangą
+          ir mobiliąsias programėles. Taip pat atliekame NIS2 reikalavimų ir
+          atitikties vertinimą pagal kibernetinio saugumo įstatymą. Kiekvieno darbo
+          rezultatas &mdash; rašytinė ataskaita, kurią inžinieriai gali pradėti
+          taikyti iš karto.
+        </p>
+        <p class="hero__stand">
+          Tik rankinis testavimas. Kiekvienas radinys su reikšmingumu, atkūrimo
+          žingsniais, verslo poveikiu ir konkrečiu pataisymu. Nemokamas pakartotinis
+          testavimas po pataisymų.
+        </p>
+        <p class="hero__note">
+          Dirbame pagal iš anksto suderintą apimtį. Prieš pradėdami testavimą
+          pasirašome susitarimą dėl veiksmų taisyklių. Priimame ir NIS2 direktyvos
+          taikymo srityje esančias įmones.
+        </p>
+      </div>
+
+      <aside class="card card--cta" aria-labelledby="cta-title">
+        <p class="eyebrow">Pradėti darbą</p>
+        <h2 class="card__title" id="cta-title">Gauti pasiūlymą</h2>
+        <p class="card__body">
+          Atsiųskite tikslinius sistemų sąrašą ir apimtį. Atsakysime raštu su
+          siūlomu požiūriu, darbų trukme ir pasiūlymu.
+        </p>
+        <a class="cta" href="mailto:contact@baltsec.com?subject=Kibernetinio%20saugumo%20audito%20u%C5%BEsakymas">contact@baltsec.com</a>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- ── Paslaugos ─────────────────────────────────────────────────── -->
+  <section class="band" id="paslaugos" aria-labelledby="paslaugos-title">
+    <div class="shell">
+      <header class="band__head">
+        <p class="eyebrow">Kibernetinio saugumo paslaugos</p>
+        <h2 class="band__title" id="paslaugos-title">Penkios paslaugų kryptys</h2>
+        <p class="band__intro">
+          Atliekame IT saugumo auditus ir informacijos saugumo vertinimus.
+          Kiekviena kryptis gali būti užsakoma atskirai arba jungiama į vieną
+          darbų apimtį. Visos paslaugos atliekamos rankiniu būdu.
+        </p>
+      </header>
+
+      <ul class="svc-grid">
+
+        <li class="svc">
+          <article class="svc__inner">
+            <p class="svc__num" aria-hidden="true">01</p>
+            <h3 class="svc__title">Interneto aplikacijų ir API įsilaužimų testavimas (penetracijos testas)</h3>
+            <p class="svc__body">
+              Rankinis testavimas, padedantis rasti pažeidžiamumus anksčiau nei
+              užpuolikai. Autentifikacija, prieigos kontrolė, įterpimas (injection),
+              verslo logikos piktnaudžiavimas, API autorizacija.
+            </p>
+            <ul class="svc__tags">
+              <li>Autentifikacija</li>
+              <li>Prieigos kontrolė</li>
+              <li>Įterpimas (injection)</li>
+              <li>Verslo logika</li>
+              <li>API autorizacija</li>
+              <li>Penetracijos testas</li>
+            </ul>
+          </article>
+        </li>
+
+        <li class="svc">
+          <article class="svc__inner">
+            <p class="svc__num" aria-hidden="true">02</p>
+            <h3 class="svc__title">Pažeidžiamumų tyrimas</h3>
+            <p class="svc__sub">Autentifikacijos apeinimas, įterpimas, deserializacija, pažeidžiamumų valdymas</p>
+            <p class="svc__body">
+              Išsamus autentifikacijos, įterpimo ir nesaugios deserializacijos
+              tyrimas individualioje ir įmonės programinėje įrangoje, taip pat
+              pažeidžiamumų vertinimas ir valdymas.
+            </p>
+            <ul class="svc__tags">
+              <li>Autentifikacijos apeinimas</li>
+              <li>Įterpimas (injection)</li>
+              <li>Deserializacija</li>
+              <li>Pažeidžiamumų vertinimas</li>
+              <li>Pažeidžiamumų valdymas</li>
+            </ul>
+          </article>
+        </li>
+
+        <li class="svc">
+          <article class="svc__inner">
+            <p class="svc__num" aria-hidden="true">03</p>
+            <h3 class="svc__title">Įmonės programinės įrangos, TVS ir CMS saugumo vertinimas</h3>
+            <p class="svc__body">
+              Įmonės platformų ir turinio valdymo sistemų (TVS) saugumo vertinimas:
+              nuo konfigūracijos iki kodo lygmens problemų.
+            </p>
+            <ul class="svc__tags">
+              <li>Konfigūracija</li>
+              <li>Diegimas</li>
+              <li>Kodo lygmuo</li>
+            </ul>
+          </article>
+        </li>
+
+        <li class="svc">
+          <article class="svc__inner">
+            <p class="svc__num" aria-hidden="true">04</p>
+            <h3 class="svc__title">Mobiliųjų programėlių ir Android saugumo vertinimas</h3>
+            <p class="svc__body">
+              Mobiliųjų programėlių vertinimas: duomenų saugojimas, perdavimas,
+              autentifikacija ir tarpusavio procesų komunikacija.
+            </p>
+            <ul class="svc__tags">
+              <li>Saugojimas</li>
+              <li>Perdavimas</li>
+              <li>Autentifikacija</li>
+              <li>Mobiliosios programėlės</li>
+            </ul>
+          </article>
+        </li>
+
+        <li class="svc">
+          <article class="svc__inner">
+            <p class="svc__num" aria-hidden="true">05</p>
+            <h3 class="svc__title">CVE koordinavimas ir rekomendacijos</h3>
+            <p class="svc__body">
+              Informavimo apie pažeidžiamumus koordinavimas su gamintojais ir CVE
+              identifikatorių priskyrimas, kai tai pagrįsta.
+            </p>
+            <ul class="svc__tags">
+              <li>CVE</li>
+              <li>Gamintojai</li>
+              <li>Atskleidimas</li>
+            </ul>
+          </article>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Procesas ─────────────────────────────────────────────────── -->
+  <section class="band band--alt" id="procesas" aria-labelledby="procesas-title">
+    <div class="shell">
+      <header class="band__head">
+        <p class="eyebrow">Kaip vyksta</p>
+        <h2 class="band__title" id="procesas-title">Audito eiga</h2>
+        <p class="band__intro">
+          Visada tie patys keturi etapai. Jūs visada žinote, kas vyks toliau ir
+          ką gausite.
+        </p>
+      </header>
+
+      <ol class="steps">
+
+        <li class="step">
+          <div class="step__rail" aria-hidden="true"><span class="step__dot">1</span></div>
+          <div class="step__content">
+            <h3 class="step__title">Apimties suderinimas</h3>
+            <p class="step__body">
+              Sutariame tikslines sistemas, veiksmų taisykles ir sistemų, kurių
+              neliesime, sąrašą &mdash; viską raštu prieš pradedant bet kokį
+              testavimą. Niekas neliečiama, kol nesate patvirtinę ribų.
+            </p>
+            <p class="step__meta">Rezultatas &middot; pasirašytas veiksmų taisyklių dokumentas</p>
+          </div>
+        </li>
+
+        <li class="step">
+          <div class="step__rail" aria-hidden="true"><span class="step__dot">2</span></div>
+          <div class="step__content">
+            <h3 class="step__title">Testavimas</h3>
+            <p class="step__body">
+              Rankinis vertinimas pagal suderintą apimtį. Apie radinius informuojame
+              viso proceso metu, o skubius radinius perduodame nedelsiant.
+            </p>
+            <p class="step__meta">Rezultatas &middot; einamoji informacija apie radinius</p>
+          </div>
+        </li>
+
+        <li class="step">
+          <div class="step__rail" aria-hidden="true"><span class="step__dot">3</span></div>
+          <div class="step__content">
+            <h3 class="step__title">Ataskaita</h3>
+            <p class="step__body">
+              Įsilaužimų ataskaita, kurioje kiekvienas radinys turi reikšmingumą,
+              atkūrimo žingsnius, verslo poveikį ir konkretų pataisymą &mdash;
+              parašyta ir inžinieriui, kuris taisys, ir vadovui, kuris skirs biudžetą.
+            </p>
+            <p class="step__meta">Rezultatas &middot; audito ataskaita</p>
+          </div>
+        </li>
+
+        <li class="step">
+          <div class="step__rail" aria-hidden="true"><span class="step__dot">4</span></div>
+          <div class="step__content">
+            <h3 class="step__title">Pakartotinis testavimas</h3>
+            <p class="step__body">
+              Po pataisymų radiniai testuojami iš naujo ir ataskaita atnaujinama.
+              Pakartotinis testavimas atliekamas nemokamai.
+            </p>
+            <p class="step__meta">Rezultatas &middot; atnaujinta ataskaita, nemokamai</p>
+          </div>
+        </li>
+
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── NIS2 / teisinis auditas (atskira, aiškiai pažymėta sekcija) ── -->
+  <section class="band" id="nis2" aria-labelledby="nis2-title">
+    <div class="shell">
+      <header class="band__head">
+        <p class="eyebrow">Teisinis reikalavimas</p>
+        <h2 class="band__title" id="nis2-title">NIS2 reikalavimai ir kibernetinio saugumo auditas</h2>
+        <p class="band__intro">
+          Kibernetinio saugumo įstatymas (KSĮ), kuriuo Lietuvoje įgyvendinama
+          NIS2 direktyva, reikalauja, kad kibernetinio saugumo subjektai ne rečiau
+          kaip kartą per 3 metus atliktų kibernetinio saugumo auditą pagal NKSC
+          tvirtinamą metodiką. NIS2 reikalavimai taikomi vidutinėms ir didelėms
+          įmonėms NIS2 direktyvos sektoriuose. Jei abejojate dėl NIS2 atitikties,
+          atliekame pasirengimo vertinimą ir kibernetinio saugumo konsultacijas.
+        </p>
+      </header>
+
+      <div class="notice">
+        <p class="notice__title">Svarbu žinoti</p>
+        <p class="notice__body">
+          Šį auditą atlieka nepriklausomi, visuotinai pripažintų tarptautinių
+          organizacijų sertifikuoti informacinių sistemų saugumo atitikties
+          auditoriai arba audito įmonės, atitinkančios KSĮ 14 straipsnio 8 dalyje
+          ir NKSC metodikoje nustatytus reikalavimus.
+        </p>
+      </div>
+
+      <ul class="terms">
+
+        <li class="term">
+          <h3 class="term__title">Kam tai privaloma</h3>
+          <p class="term__body">
+            Įmonėms, įtrauktoms į kibernetinio saugumo subjektų sąrašą (NIS2
+            direktyvos taikymo srityje esantys subjektai), &mdash; paprastai
+            vidutinėms ir didelėms įmonėms, taip pat tam tikrais atvejais mažesnėms.
+          </p>
+        </li>
+
+        <li class="term">
+          <h3 class="term__title">Kaip dažnai</h3>
+          <p class="term__body">
+            Ne rečiau kaip kartą per 3 metus. Be to, kiekvienais metais atliekamas
+            atitikties vertinimas ir rengiamas trūkumų šalinimo planas.
+          </p>
+        </li>
+
+        <li class="term">
+          <h3 class="term__title">Kokia tvarka</h3>
+          <p class="term__body">
+            Pagal Nacionalinio kibernetinio saugumo centro (NKSC) patvirtintą
+            kibernetinio saugumo auditų atlikimo metodiką. Audito ataskaita
+            pateikiama per KSIS sistemą.
+          </p>
+        </li>
+
+        <li class="term">
+          <h3 class="term__title">Kuo galime padėti šiandien</h3>
+          <p class="term__body">
+            Atliekame įsilaužimų testavimą, pažeidžiamumų vertinimą ir pasirengimo
+            NIS2 reikalavimams vertinimą. Dėl teisės aktuose numatyto audito
+            (KSĮ 14 str. 8 d.) susisiekite &mdash; aptarsime auditoriaus
+            kvalifikacijos reikalavimus ir tinkamumą konkrečiu atveju.
+          </p>
+        </li>
+
+      </ul>
+
+      <p class="band__note">
+        Informacija apie teisės aktų reikalavimus pateikiama bendra tvarka.
+        Tai nėra teisinė konsultacija &mdash; konkrečiu atveju rekomenduojame
+        pasitikrinti NKSC svetainėje arba su teisininku.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Darbo sąlygos ────────────────────────────────────────────── -->
+  <section class="band band--alt" id="salygos" aria-labelledby="salygos-title">
+    <div class="shell">
+      <header class="band__head">
+        <p class="eyebrow">Atskleidimas ir darbo sąlygos</p>
+        <h2 class="band__title" id="salygos-title">Kaip dirbame</h2>
+        <p class="band__intro">
+          Sąlygos, kurios galioja tiek klientui, tiek tiekėjui kitoje radinio pusėje.
+        </p>
+      </header>
+
+      <ul class="terms">
+        <li class="term">
+          <h3 class="term__title">Konfidencialumas nuo pirmos dienos</h3>
+          <p class="term__body">Visa medžiaga, susijusi su darbais, laikoma konfidencialia. Pasirašome abipusį konfidencialumo susitarimą prieš pradedant darbus.</p>
+        </li>
+        <li class="term">
+          <h3 class="term__title">Pataisymas pirmiau, viešumas po to</h3>
+          <p class="term__body">Apie radinius pirmiausia informuojame jus ir gamintoją. Vėliau &mdash; tik išleidus pataisymą.</p>
+        </li>
+        <li class="term">
+          <h3 class="term__title">Duomenų tvarkymas</h3>
+          <p class="term__body">Kliento duomenys naudojami tik darbų atlikimui ir neperduodami tretiesiems asmenims.</p>
+        </li>
+        <li class="term">
+          <h3 class="term__title">Ataskaitos formatas</h3>
+          <p class="term__body">Įsilaužimų ataskaitoje kiekvienas radinys pateikiamas su reikšmingumu, poveikiu ir pataisymo rekomendacija.</p>
+        </li>
+        <li class="term">
+          <h3 class="term__title">Kritiniai radiniai</h3>
+          <p class="term__body">Kritinio reikšmingumo radiniams &mdash; išsami analizė ir CVE koordinavimas.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Rašome ───────────────────────────────────────────────────── -->
+  <section class="band" id="rasome" aria-labelledby="rasome-title">
+    <div class="shell">
+      <header class="band__head">
+        <p class="eyebrow">Įžvalgos</p>
+        <h2 class="band__title" id="rasome-title">Įžvalgos</h2>
+        <p class="band__intro">
+          Straipsniai apie kibernetinį saugumą, NIS2 atitiktį ir atskleidimų
+          apžvalgos. Skelbiama tik po to, kai pataisymas išleistas arba
+          atskleidimo terminas pasibaigęs.
+        </p>
+      </header>
+
+      <ul class="post-list">
+        <li class="post">
+          <a class="post__link" href="rasome/pradzia.html">
+            <span class="post__date">2026 m. rugsėjo 11 d.</span>
+            <span class="post__title">Pradedame rašyti</span>
+            <span class="post__tag">meta</span>
+          </a>
+        </li>
+      </ul>
+
+      <p class="band__note"><a href="rasome/" class="band__link">Visi įrašai &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- ── Kviečiame susisiekti ─────────────────────────────────────── -->
+  <section class="band band--cta" id="kontaktai" aria-labelledby="kontaktai-title">
+    <div class="shell closing">
+      <p class="eyebrow">Kitas žingsnis</p>
+      <h2 class="closing__title" id="kontaktai-title">Gauti konsultaciją</h2>
+      <p class="closing__body">
+        Parašykite, ką kuriate ir kas kelia nerimą dėl saugumo. Atliksime
+        kibernetinio saugumo auditą, įsilaužimų testavimą arba NIS2 atitikties
+        vertinimą. Jei auditas nėra tinkama priemonė jūsų problemai, mes tai
+        pasakysime.
+      </p>
+      <a class="cta cta--lg" href="mailto:contact@baltsec.com?subject=Kibernetinio%20saugumo%20audito%20u%C5%BEsakymas">contact@baltsec.com</a>
+      <p class="closing__meta">Kibernetinio saugumo auditai ir testavimas &middot; Lietuva</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <p class="footer__copy">baltsec &mdash; kibernetinio saugumo auditas, įsilaužimų testavimas ir NIS2 atitikties vertinimas. Lietuva.</p>
+    <p class="footer__copy">&copy; 2026 baltsec. Visos teisės saugomos. <a class="footer__link" href="privatumas.html">Privatumo politika</a></p>
   </div>
-</section>
-
-<section>
-  <h2>disclosure</h2>
-  <div class="term">
-    <span class="ln"><span class="prompt">$&nbsp;</span><span class="cmd">./report --policy</span></span>
-    <span class="ln out">&nbsp;</span>
-    <span class="ln ok">[ ok ]&nbsp;encrypted communications accepted (PGP on request)</span>
-    <span class="ln ok">[ ok ]&nbsp;zero exploit code published prior to a fix</span>
-    <span class="ln info">[info]&nbsp;medium-severity issues : courtesy credit / hall of fame</span>
-    <span class="ln info">[info]&nbsp;critical-severity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: full write-up + CVE coordination</span>
-  </div>
-</section>
-
-<section>
-  <h2>writing</h2>
-  <ul class="postlist">
-    <li>
-      <span class="date">2026-09-11</span>
-      <span class="ptitle"><a href="posts/welcome.html">Opening the log</a></span>
-      <span class="tag">meta</span>
-    </li>
-  </ul>
-  <p class="dim" style="margin-top:12px;font-size:13px"><a href="posts/">all posts &rarr;</a></p>
-</section>
-
-<section>
-  <h2>contact</h2>
-  <dl class="kv">
-    <dt>email</dt>
-    <dd><a href="mailto:contact@baltsec.com">contact@baltsec.com</a></dd>
-  </dl>
-</section>
-
-<footer>
-  <span>baltsec.com &middot; no trackers, no cookies, no javascript</span>
-  <span>2026</span>
 </footer>
 
-</div>
 </body>
 </html>

@@ -1,0 +1,397 @@
+/* ============================================================
+   baltsec — variant 04: THE ENGAGEMENT TIMELINE
+   Left-rail process spine, pure CSS. No javascript.
+   ============================================================ */
+
+:root{
+  --bg:      #0a0a0a;
+  --bg-2:    #101010;
+  --fg:      #d4d4d4;
+  --dim:     #8a8a8a;
+  --dim-2:   #6a6a6a;
+  --faint:   #2a2a2a;
+  --accent:  #7ee2a8;   /* single accent */
+  --rail:    2px;
+  --rail-x:  26px;      /* spine horizontal position */
+  --mono:    ui-monospace, "SFMono-Regular", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --sans:    system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.65;
+  letter-spacing:0.005em;
+  overflow-x:hidden;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+}
+
+/* ---------- layout shell ---------- */
+.shell{
+  width:100%;
+  max-width:940px;
+  margin-inline:auto;
+  padding-inline:20px;
+}
+
+a{ color:var(--fg); text-decoration:underline; text-decoration-color:var(--dim-2); text-underline-offset:3px; }
+a:hover{ color:var(--accent); text-decoration-color:var(--accent); }
+a:focus-visible,
+.skip:focus-visible,
+.cta:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+/* skip link */
+.skip{
+  position:absolute; left:-9999px; top:0;
+  background:var(--bg-2); color:var(--fg);
+  padding:10px 14px; z-index:50;
+  font-family:var(--mono); font-size:13px;
+}
+.skip:focus{ left:12px; top:12px; }
+
+/* ---------- masthead (sticky, minimal, no JS) ---------- */
+.masthead{
+  position:sticky; top:0; z-index:20;
+  background:rgba(10,10,10,0.94);
+  border-bottom:1px solid var(--faint);
+  backdrop-filter:blur(6px);
+}
+.masthead-in{
+  display:flex; flex-wrap:wrap; gap:10px 18px;
+  align-items:baseline; justify-content:space-between;
+  padding-block:12px;
+}
+.brand{
+  margin:0; display:flex; flex-wrap:wrap; align-items:baseline;
+  gap:0 10px; font-family:var(--mono);
+}
+.brand-mark{ color:var(--accent); }
+.brand-name{ font-weight:700; letter-spacing:0.10em; font-size:16px; }
+.brand-tag{
+  color:var(--dim);
+  font-size:12px; letter-spacing:0.16em; text-transform:uppercase;
+}
+.masthead-cta{ margin:0; display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; }
+.cta-mail{
+  font-family:var(--mono); font-size:13px; color:var(--dim);
+  word-break:break-all;
+}
+
+/* ---------- buttons ---------- */
+.cta{
+  display:inline-block;
+  font-family:var(--mono); font-size:15px;
+  padding:12px 20px;
+  color:var(--bg); background:var(--accent);
+  border:1px solid var(--accent); border-radius:3px;
+  text-decoration:none; font-weight:700; letter-spacing:0.01em;
+}
+.cta:hover{ background:transparent; color:var(--accent); }
+.cta-sm{ font-size:13px; padding:7px 14px; font-weight:600; }
+
+/* ---------- hero ---------- */
+.hero{ padding-block:56px 8px; }
+.eyebrow{
+  margin:0 0 18px;
+  font-family:var(--mono); font-size:12px;
+  letter-spacing:0.20em; text-transform:uppercase; color:var(--dim);
+}
+h1{
+  margin:0 0 22px;
+  font-size:clamp(1.85rem, 6.2vw, 3.05rem);
+  line-height:1.14;
+  letter-spacing:-0.02em;
+  font-weight:700;
+  color:#f2f2f2;
+  max-width:24ch;
+}
+.lede{
+  margin:0 0 30px; max-width:62ch;
+  font-size:clamp(1rem,2.5vw,1.09rem);
+  color:var(--fg);
+}
+.hero-cta{
+  display:flex; flex-wrap:wrap; align-items:center; gap:12px 16px;
+  margin:0 0 40px;
+}
+
+/* ASCII wordmark: scaled with clamp, never wraps */
+.wordmark{
+  margin:0 0 40px;
+  font-family:var(--mono);
+  font-size:clamp(4.2px, 1.42vw, 13px);
+  line-height:1.06;
+  white-space:pre;
+  color:var(--faint);
+  overflow:hidden;
+  max-width:100%;
+}
+
+.hero-facts{
+  margin:0; padding:0; list-style:none;
+  border-top:1px solid var(--faint);
+  border-bottom:1px solid var(--faint);
+}
+.hero-facts li{
+  padding:13px 0 13px 26px;
+  position:relative;
+  font-size:15px; color:var(--fg);
+  border-bottom:1px solid #1a1a1a;
+}
+.hero-facts li:last-child{ border-bottom:0; }
+.hero-facts li::before{
+  content:"\2192";
+  position:absolute; left:0; top:13px;
+  color:var(--accent); font-family:var(--mono); font-size:14px;
+}
+
+/* ---------- section headings ---------- */
+.section-h{
+  margin:0 0 10px;
+  font-size:clamp(1.3rem,4vw,1.7rem);
+  line-height:1.2; letter-spacing:-0.01em;
+  color:#f2f2f2;
+}
+.section-sub{
+  margin:0 0 40px; max-width:58ch;
+  color:var(--dim); font-size:15px;
+}
+
+/* ============================================================
+   THE TIMELINE — left rail spine
+   ============================================================ */
+.timeline{
+  counter-reset:stage;
+  position:relative;
+  padding-block:56px 24px;
+  border-top:1px solid var(--faint);
+  margin-top:24px;
+}
+
+/* the spine itself — drawn by the FIRST stage, spanning from its own node to
+   the bottom of the last stage. No pixel guessing about headings above it. */
+.timeline > .section-sub{ position:relative; z-index:1; }
+.stage:first-of-type::before{
+  content:"";
+  position:absolute;
+  left:calc(var(--rail-x) + 0.5px - var(--rail) / 2);
+  top:17px;                     /* centre of the first node */
+  bottom:-52px;                 /* extend through the final stage padding */
+  width:var(--rail);
+  background:linear-gradient(to bottom, var(--accent), var(--faint) 6%, var(--faint) 92%, transparent);
+}
+.stage:last-of-type::before{ bottom:0; }
+
+/* on narrow screens the node is smaller and the padding differs */
+@media (max-width:640px){
+  .stage:first-of-type::before{ top:14px; bottom:-40px; }
+  .stage:last-of-type::before{ bottom:0; }
+}
+
+.stage{
+  position:relative;
+  counter-increment:stage;
+  padding-left:calc(var(--rail-x) + 34px);
+  padding-bottom:52px;
+}
+.stage:last-of-type{ padding-bottom:0; }
+
+/* node marker on the spine */
+.stage-marker{
+  position:absolute;
+  left:calc(var(--rail-x) - 15px);
+  top:2px;
+  width:32px; height:32px;
+  border-radius:50%;
+  background:var(--bg);
+  border:var(--rail) solid var(--accent);
+  box-sizing:border-box;
+}
+.stage-marker::after{
+  content:counter(stage,decimal-leading-zero);
+  position:absolute;
+  inset:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono);
+  font-size:11px; font-weight:700;
+  color:var(--accent);
+}
+
+.stage-head{ margin-bottom:16px; }
+.stage-num{
+  margin:0 0 4px;
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.22em; text-transform:uppercase; color:var(--dim-2);
+}
+.stage-head h3{
+  margin:0 0 6px;
+  font-size:clamp(1.5rem,5vw,2.1rem);
+  line-height:1.15; letter-spacing:-0.02em;
+  color:#f2f2f2;
+}
+.stage-when{
+  margin:0;
+  font-family:var(--mono); font-size:13px; color:var(--accent);
+}
+
+.stage-lede{
+  margin:0 0 26px; max-width:60ch;
+  font-size:16px; color:var(--fg);
+}
+
+.stage-body h4{
+  margin:26px 0 10px;
+  font-family:var(--mono); font-size:13px;
+  letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--dim);
+}
+.methods-h{
+  margin:30px 0 14px;
+  font-family:var(--mono); font-size:13px;
+  letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--dim);
+  padding-top:22px;
+  border-top:1px solid var(--faint);
+}
+
+.stage-body > ul{ margin:0; padding-left:1.15em; max-width:62ch; }
+.stage-body > ul > li{ margin-bottom:9px; }
+.stage-body > ul > li::marker{ color:var(--dim-2); }
+
+/* ---------- services (attached to Testing) ---------- */
+.services{
+  list-style:none; margin:0; padding:0;
+  display:grid; gap:1px;
+  background:var(--faint);
+  border:1px solid var(--faint);
+}
+.service{
+  background:var(--bg-2);
+  padding:18px 18px 16px;
+  margin:0;
+  position:relative;
+}
+.service::before{
+  content:"";
+  position:absolute; left:0; top:18px; bottom:18px;
+  width:2px; background:var(--accent); opacity:0.5;
+}
+.service h4{
+  margin:0 0 7px;
+  font-family:var(--sans);
+  font-size:16px; font-weight:700;
+  letter-spacing:0; text-transform:none;
+  color:#eeeeee;
+}
+.service p{ margin:0; font-size:14.5px; color:var(--dim); max-width:60ch; }
+
+/* ---------- attached asides ---------- */
+.attach{
+  margin-top:30px;
+  border-left:2px solid var(--faint);
+  padding:2px 0 2px 18px;
+  max-width:66ch;
+}
+.attach h4{
+  margin:0 0 10px;
+  color:var(--dim);
+}
+.attach p{ margin:0 0 10px; font-size:14.5px; color:var(--fg); }
+.attach-note{ color:var(--dim) !important; }
+.stage-body .claims{ list-style:none; margin:0; padding:0; }
+.stage-body .claims li{
+  position:relative;
+  padding:7px 0 7px 24px;
+  font-size:14.5px; color:var(--fg);
+  border-bottom:1px solid #1a1a1a;
+  list-style:none;
+  list-style-type:none;
+}
+.stage-body .claims li::marker{ content:none; font-size:0; }
+.stage-body .claims li:last-child{ border-bottom:0; }
+.stage-body .claims li::before{
+  content:"[ok] ";
+  position:absolute; left:0; top:8px;
+  font-family:var(--mono); font-size:11px;
+  color:var(--accent); letter-spacing:0;
+}
+.attach-wide{ border-left-color:var(--accent); }
+
+/* end cap on the spine */
+.timeline-end{ display:none; }
+
+/* ---------- outro ---------- */
+.outro{
+  border-top:1px solid var(--faint);
+  padding-block:56px 64px;
+}
+.kv{
+  margin:30px 0 0; padding:0;
+  display:grid;
+  grid-template-columns:max-content 1fr;
+  gap:8px 20px;
+  max-width:32rem;
+  font-family:var(--mono); font-size:14px;
+}
+.kv dt{ color:var(--dim); }
+.kv dd{ margin:0; color:var(--fg); }
+
+/* ---------- footer ---------- */
+.site-foot{
+  border-top:1px solid var(--faint);
+  font-family:var(--mono); font-size:12.5px; color:var(--dim);
+}
+.site-foot .shell{
+  display:flex; flex-wrap:wrap; gap:6px 18px;
+  justify-content:space-between;
+  padding-block:22px 28px;
+}
+
+/* ============================================================
+   RESPONSIVE — left rail stays a left rail at every width
+   ============================================================ */
+@media (max-width:640px){
+  :root{ --rail-x:16px; }
+  .shell{ padding-inline:16px; }
+  .hero{ padding-block:38px 4px; }
+  .wordmark{ font-size:clamp(4px, 2.02vw, 9px); }
+  .stage{ padding-left:calc(var(--rail-x) + 28px); padding-bottom:40px; }
+  .stage-marker{ left:calc(var(--rail-x) - 13px); width:28px; height:28px; top:0; }
+  .stage-marker::after{ font-size:10px; }
+  .attach{ padding-left:14px; }
+  .masthead-in{ padding-block:10px; }
+  .kv{ grid-template-columns:1fr; gap:2px 0; }
+  .kv dd{ margin-bottom:12px; }
+}
+
+@media (max-width:400px){
+  body{ font-size:15.5px; }
+  :root{ --rail-x:12px; }
+  .stage-marker{ left:calc(var(--rail-x) - 12px); width:26px; height:26px; }
+  .stage-marker::after{ font-size:9.5px; }
+  .stage{ padding-left:calc(var(--rail-x) + 24px); }
+  .brand-tag{ display:none; }
+  .cta-mail{ font-size:12px; }
+  .service{ padding:15px 14px 14px; }
+  .wordmark{ font-size:clamp(3.6px, 2.16vw, 8px); }
+}
+
+/* Very small screens: keep the CTA tappable and mail on its own line */
+@media (max-width:480px){
+  .callout, .masthead-cta{ width:100%; }
+  .hero-cta{ align-items:flex-start; flex-direction:column; }
+}
